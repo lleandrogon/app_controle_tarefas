@@ -7,14 +7,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('bem-vindo');
 });
 
 Auth::routes(['verify' => true]);
 
+/*
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
     ->name('home')
     ->middleware('verified');
+*/
 
 Route::resource('tarefa', TarefaController::class)
     ->middleware('verified');;

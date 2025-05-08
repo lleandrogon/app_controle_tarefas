@@ -72,5 +72,11 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": {
+        "excel": {
+            "type": "vcs",
+            "url": "https://github.com/SpartnerNL/Laravel-Excel"
+        }
+    }
 }

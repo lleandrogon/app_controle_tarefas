@@ -5,7 +5,20 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Tarefas</div>
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-6">   
+                            Tarefas
+                        </div>
+                        <div class="col-6">
+                            <div class="float-end">
+                                <a href="{{ route('tarefa.create') }}" class="me-3">Novo</a>
+                                <a href="#" class="me-3">XLSX</a>
+                                <a href="#">CSV</a>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
 
                 <div class="card-body">
                     <table class="table">
@@ -14,6 +27,8 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Tarefa</th>
                                 <th scope="col">Data limite conclusão</th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
 
@@ -23,6 +38,14 @@
                                     <th scope="row">{{ $t['id'] }}</th>
                                     <td>{{ $t['tarefa'] }}</td>
                                     <td>{{ date('d/m/Y', strtotime($t['data_limite_conclusao'])) }}</td>
+                                    <td><a href="{{ route('tarefa.edit', $t['id']) }}">Editar</a></td>
+                                    <td>
+                                        <form id="form_{{$t['id']}}" method="POST" action="{{ route('tarefa.destroy', ['tarefa' => $t['id']]) }}">
+                                            @method('DELETE')
+                                            @csrf
+                                        </form>
+                                        <a href="#" onclick="document.getElementById('form_{{$t['id']}}').submit()">Excluir</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
